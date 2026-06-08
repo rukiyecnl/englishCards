@@ -1,0 +1,20 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Word {
+  id          String   @id @default(cuid())
+  english     String   @db.VarChar(255)
+  turkish     String   @db.VarChar(255)
+  sentence  String?  // Opsiyonel örnek cümle
+  notes     String?  // Opsiyonel kullanıcı notu
+  status    String   @default("unlearned") // "unlearned" (öğrenilmedi), "medium" (orta), "learned" (öğrenildi)
+  type      String   @default("word")
+  updatedAt   DateTime @updatedAt
+
+  @@map("words")
+}
