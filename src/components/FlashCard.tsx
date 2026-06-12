@@ -192,7 +192,7 @@ export default function Flashcard({ words = [] }: FlashcardProps) {
               <span>Mevcut Liste ({filteredWords.length})</span>
               <button onClick={() => setIsListOpen(false)} className="text-gray-500 hover:text-gray-700">✕</button>
             </div>
-            {filteredWords.map((word, idx) => (
+            {filteredWords.sort((a, b) => a.english.localeCompare(b.english)).map((word, idx) => (
               <button key={word.id} onClick={() => { setCurrentIndex(idx); setIsListOpen(false); }} className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-colors flex justify-between items-center ${currentIndex === idx ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
                 <span>{word.english}</span>
                 <span className="text-xs text-gray-400">{word.turkish}</span>
